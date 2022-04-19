@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -15,14 +16,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('website.home');
+})->name('home');
 
-Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Auth::routes();
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 // Admin Panel Routes
-Route::get('/test', function () {
-    return view('admin.dashboard.index');
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('/category', [CategoryController::class, 'index'])->name('category');
+    Route::get('/category_create', [CategoryController::class, 'create'])->name('category_create');
 });
