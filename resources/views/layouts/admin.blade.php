@@ -208,7 +208,12 @@
                                         <p>Category</p>
                                     </a>
                                 </li>
-
+                                <li class="nav-item">
+                                    <a href="{{ route('tag_index') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Tag</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
 
