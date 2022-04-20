@@ -25,6 +25,11 @@ Route::get('/', function () {
 
 // Admin Panel Routes
 Route::group(['prefix' => 'admin'], function () {
-    Route::get('/category', [CategoryController::class, 'index'])->name('category');
+    Route::get('/category_index', [CategoryController::class, 'index'])->name('category_index');
     Route::get('/category_create', [CategoryController::class, 'create'])->name('category_create');
+    Route::post('/category_store', [CategoryController::class, 'store'])->name('category_store');
+
+    Route::get('/category_edit/{id}', [CategoryController::class, 'edit'])->name('category_edit');
+    Route::post('/category_update/{id}', [CategoryController::class, 'update'])->name('category_update');
+    Route::post('/category_destroy/{id}', [CategoryController::class, 'destroy'])->name('category_destroy');
 });

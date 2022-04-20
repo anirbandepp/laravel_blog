@@ -43,25 +43,24 @@
                                 </div>
                             </div>
 
-                            <form action="{{ route('category_store') }}" method="POST">
+                            <form action="{{ route('category_update', [$category->id]) }}" method="POST">
                                 @csrf
                                 <div class="card-body">
-
                                     <div class="form-group">
                                         <label for="name">Name</label>
                                         <input type="text" class="form-control" name="name" id="name"
-                                            placeholder="Enter name">
+                                            value="{{ $category->name }}" placeholder="Enter name">
                                     </div>
 
                                     <div class="form-group">
                                         <label>Description</label>
-                                        <textarea class="form-control" name="description" rows="3" placeholder="Enter ..."></textarea>
+                                        <textarea class="form-control" name="description" rows="3"
+                                            placeholder="Enter ...">{{ $category->description }}</textarea>
                                     </div>
-
                                 </div>
 
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Update</button>
                                 </div>
                             </form>
                         </div>

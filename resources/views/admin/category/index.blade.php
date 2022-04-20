@@ -40,22 +40,39 @@
                                         <th>Name</th>
                                         <th>Slug</th>
                                         <th>Post Count</th>
-                                        <th style="width: 40px">Action</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-
-                                    <tr>
-                                        <td>1.</td>
-                                        <td>Update software</td>
-                                        <td>Update software</td>
-                                        <td>
-                                            <div class="progress progress-xs">
-                                                <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                                            </div>
-                                        </td>
-                                        <td><span class="badge bg-danger">55%</span></td>
-                                    </tr>
+                                    @foreach ($categories as $catrgory)
+                                        <tr>
+                                            <td>{{ $catrgory->id }}.</td>
+                                            <td>{{ $catrgory->name }}</td>
+                                            <td>{{ $catrgory->slug }}</td>
+                                            <td>{{ $catrgory->id }}.</td>
+                                            <td>
+                                                <a href="{{ route('category_edit', [$catrgory->id]) }}"
+                                                    class="btn btn-sm btn-primary mr-1">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <form action="{{ route('category_destroy', [$catrgory->id]) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    <button class="btn btn-sm btn-danger"> <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <a href="#" class="btn btn-sm btn-success mr-1">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
 
                                 </tbody>
                             </table>

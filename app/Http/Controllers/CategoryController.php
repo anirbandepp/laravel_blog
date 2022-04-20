@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -14,7 +16,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.category.index');
+        $categories = Category::orderBy('created_at', 'DESC')->paginate(20);
+        return view('admin.category.index', ['categories' => $categories]);
     }
 
     /**
@@ -24,6 +27,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
+
         return view('admin.category.create');
     }
 
@@ -33,9 +37,21 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $r)
     {
-        //
+        // validation
+        $this->validate($r, [
+            'name' => 'required|unique:categories,name'
+        ]);
+
+        $category = Category::create([
+            'name' => $r->name,
+            'slug' => Str::slug($r->name, '_'),
+            'description' => $r->description
+        ]);
+
+        Session::flash('success', 'Created created successfully');
+        return redirect()->route('category_index');
     }
 
     /**
@@ -46,7 +62,6 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
     }
 
     /**
@@ -55,9 +70,10 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        //
+        $category = Category::find($id);
+        return view('admin.category.edit', ['category' => $category]);
     }
 
     /**
@@ -67,9 +83,22 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $r, $id)
     {
-        //
+        // validation
+        $this->validate($r, [
+            'name' => 'required|unique:categories,name'
+        ]);
+
+        $category = Category::find($id);
+
+        $category->name = $r->name;
+        $category->slug =  Str::slug($r->name, '_');
+        $category->description = $r->description;
+        $category->update();
+
+        Session::flash('success', 'Category updated successfully');
+        return redirect()->route('category_index');
     }
 
     /**
@@ -78,8 +107,12 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Request $r, $id)
     {
-        //
+        $obj = Category::find($id);
+        $obj->delete();
+
+        Session::flash('success', 'Category deleted successfully');
+        return redirect()->route('category_index');
     }
 }
