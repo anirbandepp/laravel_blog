@@ -203,15 +203,24 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ route('category_index') }}" class="nav-link active">
+                                    <a href="{{ route('category_index') }}"
+                                        class="nav-link {{ Request::routeIs('category_index') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Category</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('tag_index') }}" class="nav-link">
+                                    <a href="{{ route('tag_index') }}"
+                                        class="nav-link {{ Request::routeIs('tag_index') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Tag</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('post_index') }}"
+                                        class="nav-link {{ Request::routeIs('post_index') ? 'active' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>POST</p>
                                     </a>
                                 </li>
                             </ul>
@@ -273,10 +282,16 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+    <script src="{{ asset('admin/js/bs-custom-file-input.min.js') }}"></script>
+
     <script>
         @if (Session::has('success'))
             toastr.success("{{ Session::get('success') }}");
         @endif
+
+        $(document).ready(function() {
+            bsCustomFileInput.init();
+        });
     </script>
 </body>
 
