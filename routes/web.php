@@ -17,12 +17,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('website.home');
-})->name('home');
+// Route::get('/', function () {
+//     return view('website.home');
+// })->name('home');
 
-// Auth::routes();
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Auth::routes();
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 // Admin Panel Routes
@@ -50,6 +50,5 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/post_edit/{id}', [PostController::class, 'edit'])->name('post_edit');
     Route::post('/post_update/{id}', [PostController::class, 'update'])->name('post_update');
     Route::post('/post_delete/{id}', [PostController::class, 'destroy'])->name('post_delete');
-
     Route::get('/post_show/{id}', [PostController::class, 'show'])->name('post_show');
 });

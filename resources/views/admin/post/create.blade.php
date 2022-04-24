@@ -67,21 +67,24 @@
                                             </div>
 
                                             <div class="form-group">
-                                                @foreach ($tags as $tag)
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input class="custom-control-input" type="checkbox"
-                                                            id="tags{{ $tag->id }}" value="{{ $tag->id }}"
-                                                            name="tags[]" />
-                                                        <label for="tags{{ $tag->id }}" class="custom-control-label">
-                                                            {{ $tag->name }}
-                                                        </label>
-                                                    </div>
-                                                @endforeach
+                                                <div class="d-flex flex-wrap">
+                                                    @foreach ($tags as $tag)
+                                                        <div class="custom-control custom-checkbox mr-3">
+                                                            <input class="custom-control-input" type="checkbox"
+                                                                id="tags{{ $tag->id }}" value="{{ $tag->id }}"
+                                                                name="tags[]" />
+                                                            <label for="tags{{ $tag->id }}"
+                                                                class="custom-control-label">
+                                                                {{ $tag->name }}
+                                                            </label>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <label>Description</label>
-                                                <textarea class="form-control" name="description" rows="3"
+                                                <textarea class="form-control" name="description" id="summernote"
                                                     placeholder="Enter ...">{{ old('description') }}</textarea>
                                             </div>
 
@@ -112,4 +115,16 @@
         </div>
     </div>
     <!-- /.content -->
+@endsection
+
+@section('admin_script')
+    <script>
+        $(document).ready(function() {
+            $('#summernote').summernote({
+                placeholder: 'Post Description',
+                tabsize: 2,
+                height: 300
+            });
+        });
+    </script>
 @endsection
