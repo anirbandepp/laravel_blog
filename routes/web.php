@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Auth;
@@ -17,12 +18,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('website.home');
-// })->name('home');
-
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('/', [FrontEndController::class, 'home'])->name('home_page');
+Route::get('/about', [FrontEndController::class, 'about'])->name('about');
+Route::get('/category', [FrontEndController::class, 'category'])->name('category');
+Route::get('/contact', [FrontEndController::class, 'contact'])->name('contact');
+Route::get('/post/{slug}', [FrontEndController::class, 'post'])->name('post');
 
 
 // Admin Panel Routes
