@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 
 class FrontEndController extends Controller
@@ -16,12 +17,23 @@ class FrontEndController extends Controller
 
         $recentPosts =  Post::with('category', 'user', 'tags')->orderBy('created_at', 'DESC')->paginate(6);
 
+        $footerPosts = Post::with('category', 'user', 'tags')->inRandomOrder()->limit(4)->get();
+        $footerPostFirst1 = $footerPosts->splice(0, 1);
+        $footerPostMiddle2 = $footerPosts->splice(0, 2);
+        $footerPostLast1 = $footerPosts->splice(0, 1);
+
         return view('website.home', [
             'posts' => $posts,
+            // Top Group Post
             'recentPosts' => $recentPosts,
             'postFirst2' => $postFirst2,
             'postMiddle1' => $postMiddle1,
             'postLast2' => $postLast2,
+
+            // Footer Group Post
+            'footerPostFirst1' => $footerPostFirst1,
+            'footerPostMiddle2' => $footerPostMiddle2,
+            'footerPostLast1' => $footerPostLast1,
         ]);
     }
 
