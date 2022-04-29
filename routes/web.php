@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -55,4 +56,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::post('/post_update/{id}', [PostController::class, 'update'])->name('post_update');
     Route::post('/post_delete/{id}', [PostController::class, 'destroy'])->name('post_delete');
     Route::get('/post_show/{id}', [PostController::class, 'show'])->name('post_show');
+
+    // User Info
+    Route::get('/user_index', [UserController::class, 'index'])->name('user_index');
+    Route::get('/user_create', [UserController::class, 'create'])->name('user_create');
+    Route::post('/user_store', [UserController::class, 'store'])->name('user_store');
+    Route::get('/user_edit/{id}', [UserController::class, 'edit'])->name('user_edit');
+    Route::post('/user_update/{id}', [UserController::class, 'update'])->name('user_update');
+    Route::post('/user_destory/{id}', [UserController::class, 'destory'])->name('user_destory');
+    Route::get('/user_show', [UserController::class, 'show'])->name('user_show');
+    Route::post('/profile_update', [UserController::class, 'profile_update'])->name('profile_update');
 });
