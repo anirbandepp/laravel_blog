@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 
@@ -55,9 +57,17 @@ class FrontEndController extends Controller
     public function post($slug)
     {
         $post = Post::with('category', 'user', 'tags')->where('slug', $slug)->first();
+        $posts = Post::with('category', 'user', 'tags')->inRandomOrder()->limit(3)->get();
+        $categories = Category::all();
+        $tags = Tag::all();
 
         if ($post) {
-            return view('website.single', ['post' => $post]);
+            return view('website.single', [
+                'post' => $post,
+                'posts' => $posts,
+                'categories' => $categories,
+                'tags' => $tags,
+            ]);
         } else {
             return redirect('/');
         }

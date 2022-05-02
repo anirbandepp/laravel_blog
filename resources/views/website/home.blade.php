@@ -78,8 +78,13 @@
                                 </h2>
                                 <div class="post-meta align-items-center text-left clearfix">
                                     <figure class="author-figure mb-0 mr-3 float-left"><img
-                                            src="{{ asset('website') }}/images/person_1.jpg" alt="Image"
-                                            class="img-fluid"></figure>
+                                            src="{{ asset($post->user->image) }}" alt="Image" class="img-fluid"
+                                            style="width: 50px;
+                                                            height: 50px;
+                                                            object-fit: cover;
+                                                            border: 1px solid red;
+                                                            margin-bottom: 15px;" />
+                                    </figure>
                                     <span class="d-inline-block mt-1">By
                                         <a href="{{ route('post', ['slug' => $post->slug]) }}">
                                             {{ $post->user->name }}
