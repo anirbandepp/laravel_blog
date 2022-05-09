@@ -44,9 +44,18 @@ class FrontEndController extends Controller
         return view('website.about');
     }
 
-    public function category()
+    public function category($slug)
     {
-        return view('website.category');
+        $category = Category::where('slug', $slug)->first();
+        if ($category) {
+            $posts = Post::where('category_id',  $category->id)->with('category', 'user', 'tags')->paginate(2);
+            return view('website.category', [
+                'category' => $category,
+                'posts' => $posts
+            ]);
+        } else {
+            return redirect()->back();
+        }
     }
 
     public function contact()
