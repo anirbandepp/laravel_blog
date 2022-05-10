@@ -67,6 +67,13 @@ class FrontEndController extends Controller
     {
         $post = Post::with('category', 'user', 'tags')->where('slug', $slug)->first();
         $posts = Post::with('category', 'user', 'tags')->inRandomOrder()->limit(3)->get();
+
+        // more related posts
+        $footerPosts = Post::orderBy('id', 'desc')->with('category')->inRandomOrder()->limit(4)->get();
+        $firstFooterPosts1 =  $footerPosts->splice(0, 1);
+        $firstFooterPosts2 =  $footerPosts->splice(0, 2);
+        $firstFooterPosts3 =  $footerPosts->splice(0, 1);
+
         $categories = Category::all();
         $tags = Tag::all();
 
@@ -76,6 +83,9 @@ class FrontEndController extends Controller
                 'posts' => $posts,
                 'categories' => $categories,
                 'tags' => $tags,
+                'firstFooterPosts1' => $firstFooterPosts1,
+                'firstFooterPosts2' => $firstFooterPosts2,
+                'firstFooterPosts3' => $firstFooterPosts3,
             ]);
         } else {
             return redirect('/');

@@ -13,9 +13,9 @@
                             <figure class="author-figure mb-0 mr-3 d-inline-block">
                                 <img src="{{ asset($post->user->image) }}" alt="Image" class="img-fluid"
                                     style="width: 50px;
-                                                                                                                            height: 50px;
-                                                                                                                            object-fit: cover;
-                                                                                                                            border-radius: 100%;">
+                                                                                                                                                                                                                    height: 50px;
+                                                                                                                                                                                                                    object-fit: cover;
+                                                                                                                                                                                                                    border-radius: 100%;">
                             </figure>
                             <span class="d-inline-block mt-1">By {{ $post->user->name }}</span>
                             <span>&nbsp;-&nbsp; {{ $post->created_at->format('M d, Y') }}</span>
@@ -294,44 +294,45 @@
             <div class="row align-items-stretch retro-layout">
 
                 <div class="col-md-5 order-md-2">
-                    <a href="single.html" class="hentry img-1 h-100 gradient"
-                        style="background-image: url('{{ asset('website') }}/images/img_4.jpg');">
-                        <span class="post-category text-white bg-danger">Travel</span>
-                        <div class="text">
-                            <h2>The 20 Biggest Fintech Companies In America 2019</h2>
-                            <span>February 12, 2019</span>
-                        </div>
-                    </a>
+                    @foreach ($firstFooterPosts3 as $item)
+                        <a href="single.html" class="hentry img-1 h-100 gradient"
+                            style="background-image: url('{{ asset('website') }}/images/img_4.jpg');">
+                            <span class="post-category text-white bg-danger">Travel</span>
+                            <div class="text">
+                                <h2>The 20 Biggest Fintech Companies In America 2019</h2>
+                                <span>February 12, 2019</span>
+                            </div>
+                        </a>
+                    @endforeach
                 </div>
 
                 <div class="col-md-7">
 
-                    <a href="single.html" class="hentry img-2 v-height mb30 gradient"
-                        style="background-image: url('{{ asset('website') }}/images/img_1.jpg');">
-                        <span class="post-category text-white bg-success">Nature</span>
-                        <div class="text text-sm">
-                            <h2>The 20 Biggest Fintech Companies In America 2019</h2>
-                            <span>February 12, 2019</span>
-                        </div>
-                    </a>
+                    @foreach ($firstFooterPosts1 as $item)
+                        <a href="single.html" class="hentry img-2 v-height mb30 gradient"
+                            style="background-image: url('{{ $item->image }}');">
+                            <span class="post-category text-white bg-success">{{ $item->category->name }}</span>
+                            <div class="text text-sm">
+                                <h2>{{ $item->title }}</h2>
+                                <span>{{ $post->created_at->format('M d, Y') }}</span>
+                            </div>
+                        </a>
+                    @endforeach
+
 
                     <div class="two-col d-block d-md-flex">
-                        <a href="single.html" class="hentry v-height img-2 gradient"
-                            style="background-image: url('{{ asset('website') }}/images/img_2.jpg');">
-                            <span class="post-category text-white bg-primary">Sports</span>
-                            <div class="text text-sm">
-                                <h2>The 20 Biggest Fintech Companies In America 2019</h2>
-                                <span>February 12, 2019</span>
-                            </div>
-                        </a>
-                        <a href="single.html" class="hentry v-height img-2 ml-auto gradient"
-                            style="background-image: url('{{ asset('website') }}/images/img_3.jpg');">
-                            <span class="post-category text-white bg-warning">Lifestyle</span>
-                            <div class="text text-sm">
-                                <h2>The 20 Biggest Fintech Companies In America 2019</h2>
-                                <span>February 12, 2019</span>
-                            </div>
-                        </a>
+
+                        @foreach ($firstFooterPosts2 as $item)
+                            <a href="single.html" class="hentry v-height img-2 gradient"
+                                style="background-image: url('{{ $item->image }}'); margin-right: 10px;">
+                                <span class="post-category text-white bg-success">{{ $item->category->name }}</span>
+                                <div class="text text-sm">
+                                    <h2>{{ $item->title }}</h2>
+                                    <span>{{ $post->created_at->format('M d, Y') }}</span>
+                                </div>
+                            </a>
+                        @endforeach
+
                     </div>
 
                 </div>
