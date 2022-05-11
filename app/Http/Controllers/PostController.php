@@ -66,7 +66,7 @@ class PostController extends Controller
 
         $post->tags()->attach($r->tags);
 
-        if ($r->has('image')) {
+        if ($r->hasFile('image')) {
             $image = $r->image;
             $image_new_name = time() . '.' . $image->getClientOriginalExtension();
             $image->move('storage/post', $image_new_name);

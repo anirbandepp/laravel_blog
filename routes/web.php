@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -70,5 +71,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::post('/profile_update', [UserController::class, 'profile_update'])->name('profile_update');
 
     // Site Setting
-    Route::get('/site_settings', [UserController::class, 'index'])->name('site_settings');
+    Route::get('/site_settings', [SettingController::class, 'index'])->name('site_settings');
+    Route::get('/site_settings_create', [SettingController::class, 'create'])->name('site_settings_create');
+    Route::post('/site_settings_store', [SettingController::class, 'store'])->name('site_settings_store');
 });

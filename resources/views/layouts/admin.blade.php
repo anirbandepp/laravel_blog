@@ -225,6 +225,13 @@
                                         <p>POST</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('site_settings') }}"
+                                        class="nav-link {{ Request::routeIs('site_settings') ? 'active' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Settings</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
 

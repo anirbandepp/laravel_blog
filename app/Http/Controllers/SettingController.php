@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class SettingController extends Controller
 {
@@ -14,7 +15,8 @@ class SettingController extends Controller
      */
     public function index()
     {
-        return view('admin.setting.index');
+        $settings = Setting::all();
+        return view('admin.setting.list', ['settings' => $settings]);
     }
 
     /**
@@ -24,7 +26,7 @@ class SettingController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.setting.create');
     }
 
     /**
@@ -33,9 +35,37 @@ class SettingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $r)
     {
-        //
+        $name = $r->name;
+        $about_site = $r->about_site;
+        $facebook = $r->facebook;
+        $twitter = $r->twitter;
+        $instagram = $r->instagram;
+        $reddit = $r->reddit;
+        $email = $r->email;
+        $copyright = $r->copyright;
+
+        $site = new Setting();
+        $site->name = $name;
+        $site->about_site = $about_site;
+        $site->facebook = $facebook;
+        $site->twitter = $twitter;
+        $site->instagram = $instagram;
+        $site->reddit = $reddit;
+        $site->email = $email;
+        $site->copyright = $copyright;
+
+        if ($r->hasFile('site_logo')) {
+            $image = $r->file('site_logo');
+            $image_new_name = time() . '.' . $image->getClientOriginalExtension();
+            $image->move('storage/setting', $image_new_name);
+            $site->site_logo = '/storage/setting/' . $image_new_name;
+        }
+        $site->save();
+
+        Session::flash('success', 'settings created successfully');
+        return redirect()->route('site_settings');
     }
 
     /**
@@ -57,7 +87,7 @@ class SettingController extends Controller
      */
     public function edit(Setting $setting)
     {
-        //
+        return view('admin.setting.edit');
     }
 
     /**
@@ -67,7 +97,7 @@ class SettingController extends Controller
      * @param  \App\Models\Setting  $setting
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Setting $setting)
+    public function update(Request $request)
     {
         //
     }
