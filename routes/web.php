@@ -68,4 +68,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::post('/user_destory/{id}', [UserController::class, 'destory'])->name('user_destory');
     Route::get('/user_show', [UserController::class, 'show'])->name('user_show');
     Route::post('/profile_update', [UserController::class, 'profile_update'])->name('profile_update');
+
+    // Site Setting
+    Route::get('/site_settings', [UserController::class, 'index'])->name('site_settings');
 });
