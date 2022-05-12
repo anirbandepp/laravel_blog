@@ -58,9 +58,44 @@
                     <h2>Recent Posts</h2>
                 </div>
             </div>
+
             <div class="row">
 
+                @foreach ($recentPosts as $post)
+                    <div class="col-lg-4 mb-4">
+                        <div class="entry2">
+                            <a href="{{ route('post', ['slug' => $post->slug]) }}">
+                                <img src="{{ $post->image }}" alt="Image" class="img-fluid rounded">
+                            </a>
+                            <div class="excerpt">
+                                <span class="post-category text-white bg-secondary mb-3">
 
+                                </span>
+
+                                <h2>
+                                    <a href="{{ route('post', ['slug' => $post->slug]) }}">
+                                        {{ $post->title }}
+                                    </a>
+                                </h2>
+                                <div class="post-meta align-items-center text-left clearfix">
+                                    <figure class="author-figure mb-0 mr-3 float-left"><img
+                                            src="{{ asset($post->user->image) }}" alt="Image" class="img-fluid"
+                                            style="width: 50px;height: 50px; object-fit: cover; border: 1px solid red; margin-bottom: 15px;" />
+                                    </figure>
+                                    <span class="d-inline-block mt-1">By
+                                        <a href="{{ route('post', ['slug' => $post->slug]) }}">
+                                            {{ $post->user->name }}
+                                        </a>
+                                    </span>
+                                    <span>&nbsp;-&nbsp; {{ $post->created_at->format('M d, Y') }} </span>
+                                </div>
+
+                                <p> {{ Str::limit($post->description, 100) }} </p>
+                                <p><a href="{{ route('post', $post->slug) }}">Read More</a></p>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
 
             </div>
             <div class="row text-center pt-5 border-top">
@@ -79,7 +114,7 @@
                     <div class="col-md-5">
                         <a href="single.html" class="hentry img-1 h-100 gradient"
                             style="background-image: url('{{ $item->image }}');">
-                            <span class="item-category text-white bg-danger">Travel</span>
+                            <span class="post-category text-white bg-danger">Travel</span>
                             <div class="text">
                                 <h2>{{ $item->title }}</h2>
                                 <span>{{ $item->created_at->format('M d, Y') }}</span>

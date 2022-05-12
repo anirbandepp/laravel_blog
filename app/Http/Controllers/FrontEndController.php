@@ -18,7 +18,6 @@ class FrontEndController extends Controller
         $postLast2 = $posts->splice(0);
 
         $recentPosts =  Post::with('category', 'user', 'tags')->orderBy('created_at', 'DESC')->paginate(6);
-
         $footerPosts = Post::with('category', 'user', 'tags')->inRandomOrder()->limit(4)->get();
         $footerPostFirst1 = $footerPosts->splice(0, 1);
         $footerPostMiddle2 = $footerPosts->splice(0, 2);
