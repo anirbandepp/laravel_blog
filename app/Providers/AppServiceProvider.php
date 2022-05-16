@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\Setting;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
@@ -29,5 +30,8 @@ class AppServiceProvider extends ServiceProvider
 
         $categories = Category::take(5)->get();
         view()->share('categories', $categories);
+
+        $setting = Setting::first();
+        view()->share('setting', $setting);
     }
 }

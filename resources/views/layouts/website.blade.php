@@ -84,9 +84,7 @@
                 <div class="row mb-5">
                     <div class="col-md-4">
                         <h3 class="footer-heading mb-4">About Us</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat reprehenderit magnam
-                            deleniti quasi saepe, consequatur atque sequi delectus dolore veritatis obcaecati quae,
-                            repellat eveniet omnis, voluptatem in. Soluta, eligendi, architecto.</p>
+                        <p>{{ $setting->about_site }}</p>
                     </div>
                     <div class="col-md-3 ml-auto">
                         <!-- <h3 class="footer-heading mb-4">Navigation</h3> -->
@@ -135,9 +133,8 @@
     <script src="{{ asset('website') }}/js/jquery.magnific-popup.min.js"></script>
     <script src="{{ asset('website') }}/js/bootstrap-datepicker.min.js"></script>
     <script src="{{ asset('website') }}/js/aos.js"></script>
-
     <script src="{{ asset('website') }}/js/main.js"></script>
-
+    @yield('script')
 </body>
 
 </html>

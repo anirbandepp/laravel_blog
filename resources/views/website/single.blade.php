@@ -13,9 +13,9 @@
                             <figure class="author-figure mb-0 mr-3 d-inline-block">
                                 <img src="{{ asset($post->user->image) }}" alt="Image" class="img-fluid"
                                     style="width: 50px;
-                                                                                                                                                                                                                    height: 50px;
-                                                                                                                                                                                                                    object-fit: cover;
-                                                                                                                                                                                                                    border-radius: 100%;">
+                                                                                                                                                                                                                                height: 50px;
+                                                                                                                                                                                                                                object-fit: cover;
+                                                                                                                                                                                                                                border-radius: 100%;">
                             </figure>
                             <span class="d-inline-block mt-1">By {{ $post->user->name }}</span>
                             <span>&nbsp;-&nbsp; {{ $post->created_at->format('M d, Y') }}</span>
@@ -51,7 +51,9 @@
                     </div>
 
                     <div class="pt-5">
+
                         <h3 class="mb-5">6 Comments</h3>
+
                         <ul class="comment-list">
                             <li class="comment">
                                 <div class="vcard">
@@ -359,4 +361,25 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function() {
+            this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier =
+            PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        */
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document,
+                s = d.createElement('script');
+            s.src = 'https://laraverblog.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
 @endsection
