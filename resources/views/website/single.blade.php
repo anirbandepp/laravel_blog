@@ -13,9 +13,9 @@
                             <figure class="author-figure mb-0 mr-3 d-inline-block">
                                 <img src="{{ asset($post->user->image) }}" alt="Image" class="img-fluid"
                                     style="width: 50px;
-                                                                                                                                                                                                                                height: 50px;
-                                                                                                                                                                                                                                object-fit: cover;
-                                                                                                                                                                                                                                border-radius: 100%;">
+                                                                                                                                                                                                                                                                height: 50px;
+                                                                                                                                                                                                                                                                object-fit: cover;
+                                                                                                                                                                                                                                                                border-radius: 100%;">
                             </figure>
                             <span class="d-inline-block mt-1">By {{ $post->user->name }}</span>
                             <span>&nbsp;-&nbsp; {{ $post->created_at->format('M d, Y') }}</span>
@@ -52,116 +52,7 @@
 
                     <div class="pt-5">
 
-                        <h3 class="mb-5">6 Comments</h3>
-
-                        <ul class="comment-list">
-                            <li class="comment">
-                                <div class="vcard">
-                                    <img src="{{ asset('website') }}/images/person_1.jpg" alt="Image placeholder">
-                                </div>
-                                <div class="comment-body">
-                                    <h3>Jean Doe</h3>
-                                    <div class="meta">January 9, 2018 at 2:21pm</div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum
-                                        necessitatibus,
-                                        ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam
-                                        voluptas earum
-                                        impedit necessitatibus, nihil?</p>
-                                    <p><a href="#" class="reply rounded">Reply</a></p>
-                                </div>
-                            </li>
-
-                            <li class="comment">
-                                <div class="vcard">
-                                    <img src="{{ asset('website') }}/images/person_1.jpg" alt="Image placeholder">
-                                </div>
-                                <div class="comment-body">
-                                    <h3>Jean Doe</h3>
-                                    <div class="meta">January 9, 2018 at 2:21pm</div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum
-                                        necessitatibus,
-                                        ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam
-                                        voluptas earum
-                                        impedit necessitatibus, nihil?</p>
-                                    <p><a href="#" class="reply rounded">Reply</a></p>
-                                </div>
-
-                                <ul class="children">
-                                    <li class="comment">
-                                        <div class="vcard">
-                                            <img src="{{ asset('website') }}/images/person_1.jpg"
-                                                alt="Image placeholder">
-                                        </div>
-                                        <div class="comment-body">
-                                            <h3>Jean Doe</h3>
-                                            <div class="meta">January 9, 2018 at 2:21pm</div>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem
-                                                laborum
-                                                necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim
-                                                sapiente iste iure!
-                                                Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                            <p><a href="#" class="reply rounded">Reply</a></p>
-                                        </div>
-
-
-                                        <ul class="children">
-                                            <li class="comment">
-                                                <div class="vcard">
-                                                    <img src="{{ asset('website') }}/images/person_1.jpg"
-                                                        alt="Image placeholder">
-                                                </div>
-                                                <div class="comment-body">
-                                                    <h3>Jean Doe</h3>
-                                                    <div class="meta">January 9, 2018 at 2:21pm</div>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur
-                                                        quidem laborum
-                                                        necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe
-                                                        enim sapiente iste
-                                                        iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                                    <p><a href="#" class="reply rounded">Reply</a></p>
-                                                </div>
-
-                                                <ul class="children">
-                                                    <li class="comment">
-                                                        <div class="vcard">
-                                                            <img src="{{ asset('website') }}/images/person_1.jpg"
-                                                                alt="Image placeholder">
-                                                        </div>
-                                                        <div class="comment-body">
-                                                            <h3>Jean Doe</h3>
-                                                            <div class="meta">January 9, 2018 at 2:21pm</div>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                                Pariatur quidem laborum
-                                                                necessitatibus, ipsam impedit vitae autem, eum officia,
-                                                                fugiat saepe enim sapiente
-                                                                iste iure! Quam voluptas earum impedit necessitatibus,
-                                                                nihil?</p>
-                                                            <p><a href="#" class="reply rounded">Reply</a></p>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li class="comment">
-                                <div class="vcard">
-                                    <img src="{{ asset('website') }}/images/person_1.jpg" alt="Image placeholder">
-                                </div>
-                                <div class="comment-body">
-                                    <h3>Jean Doe</h3>
-                                    <div class="meta">January 9, 2018 at 2:21pm</div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum
-                                        necessitatibus,
-                                        ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam
-                                        voluptas earum
-                                        impedit necessitatibus, nihil?</p>
-                                    <p><a href="#" class="reply rounded">Reply</a></p>
-                                </div>
-                            </li>
-                        </ul>
+                        <div id="disqus_thread"></div>
                         <!-- END comment-list -->
 
                         <div class="comment-form-wrap pt-5">
@@ -364,15 +255,8 @@
 @endsection
 
 @section('script')
-    <div id="disqus_thread"></div>
     <script>
-        var disqus_config = function() {
-            this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
-            this.page.identifier =
-            PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-        };
-        */
-        (function() { // DON'T EDIT BELOW THIS LINE
+        (function() {
             var d = document,
                 s = d.createElement('script');
             s.src = 'https://laraverblog.disqus.com/embed.js';
@@ -380,6 +264,8 @@
             (d.head || d.body).appendChild(s);
         })();
     </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
-            Disqus.</a></noscript>
+    <noscript>Please enable JavaScript to view the
+        <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+    </noscript>
+    <script id="dsq-count-scr" src="//laraverblog.disqus.com/count.js" async></script>
 @endsection
